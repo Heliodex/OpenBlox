@@ -9,6 +9,7 @@ declare global {
 	declare type User = {
 		id: RecordId<"user">
 		name: string
+		robloxData: object | undefined
 	}
 
 	namespace App {

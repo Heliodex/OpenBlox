@@ -40,6 +40,7 @@ export async function invalidateAllSessions(user: string): Promise<void> {
 
 export const cookieName = "session"
 export const cookieSlack = "slackstate"
+export const cookieRoblox = "robloxstate"
 export const cookieOptions = Object.freeze({
 	secure: !dev,
 	maxAge: 30 * 24 * 60 * 60, // 30 days

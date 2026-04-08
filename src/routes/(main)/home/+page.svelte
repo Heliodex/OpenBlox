@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { enhance } from "$app/forms"
 
+	const data = $props()
+
 	const name = "OpenBlox"
 	const tix = 0
 </script>
@@ -11,7 +13,18 @@
 	<p class="pb-4">
 		Welcome to your {name} dashboard! This page is under construction...
 	</p>
-	<p class="pb-8">
+
+	{#if data.connectedRoblox}
+		<p>You have successfully connected your Roblox account!</p>
+	{:else}
+		<a
+			href="/auth"
+			class="btn bg-blue-500 hover:bg-blue-600 active:bg-blue-400 px-3 py-1.5 rounded-lg font-bold">
+			Connect Roblox account
+		</a>
+	{/if}
+
+	<p class="pt-4 pb-8">
 		You have <b>{tix}</b>
 		<span class="tix">Tickets.</span>
 	</p>

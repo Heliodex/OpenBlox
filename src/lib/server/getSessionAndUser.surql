@@ -1,7 +1,8 @@
 LET $s = SELECT id, expires FROM ONLY $sess;
 LET $u = (SELECT
     record::id(id) AS id,
-	name
+	name,
+	robloxData
 FROM $sess<-hasSession<-user)[0];
 
 IF $s {

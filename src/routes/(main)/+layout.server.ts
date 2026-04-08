@@ -1,6 +1,10 @@
-import { redirect } from "@sveltejs/kit"
+import { authorise } from "$lib/server/auth"
 
 // Redirect to homepage if user is logged in
 export async function load({ locals }) {
-	if (!locals.session) redirect(302, "/")
+	const { user } = await authorise(locals)
+
+	return {
+		connectedRoblox: user.robloxData !== undefined,
+	}
 }

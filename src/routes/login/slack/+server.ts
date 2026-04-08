@@ -34,7 +34,7 @@ export async function GET({ cookies, url }) {
 	let claims: Claims
 	try {
 		claims = decodeIdToken(tokens.idToken()) as Claims
-	} catch (e) {
+	} catch {
 		error(400, "Failed to decode ID token")
 	}
 	if (!claims.sub || !claims.name || !claims.email)

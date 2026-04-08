@@ -15,7 +15,7 @@ export default async () => {
 				"-b=127.0.0.1:8001",
 				"surrealkv://data/surreal",
 			],
-			{ cwd: "..", stdout: "pipe", stderr: "pipe" }
+			{ cwd: ".", stdout: "pipe", stderr: "pipe" }
 		)
 
 		process.on("exit", () => {

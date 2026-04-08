@@ -3,14 +3,14 @@ import { type } from "arktype"
 import { form } from "$app/server"
 
 const schema = type({
-	image: "(File | undefined)?",
+	"image?": "File",
 	name: "string",
 	description: "string",
-	codeUrl: "(string | undefined)?",
+	"codeUrl?": "string",
 	robloxUrl: "string",
 	projectType: "string",
-	declarations: "(string | undefined)?",
-	reviewerNotes: "(string | undefined)?",
+	"declarations?": "string",
+	"reviewerNotes?": "string",
 })
 
 export const newProjectForm = form(

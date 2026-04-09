@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from "$app/forms"
 
-	const data = $props()
+	const { data } = $props()
 
 	const name = "OpenBlox"
 	const tix = 0

@@ -1,6 +1,6 @@
 LET $s = SELECT id, expires FROM ONLY $sess;
 LET $u = (SELECT
-    record::id(id) AS id,
+    id,
 	name,
 	robloxData
 FROM $sess<-hasSession<-user)[0];

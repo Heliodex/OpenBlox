@@ -5,7 +5,7 @@ import {
 	generateCodeVerifier,
 	OAuth2RequestError,
 } from "arctic"
-import { authorise, cookieRoblox } from "$lib/server/auth"
+import { authorise, cookieRoblox, cookieRobloxVerifier } from "$lib/server/auth"
 import { db } from "$lib/server/db"
 import { roblox } from "$lib/server/oauth"
 
@@ -21,12 +21,13 @@ export async function GET({ cookies, locals, url }) {
 	const storedState = cookies.get(cookieRoblox)
 	if (!storedState) error(400, "Missing cookie")
 	if (state !== storedState) error(400, "Invalid state")
+	const codeVerifier = cookies.get(cookieRobloxVerifier)
+	if (!codeVerifier) error(400, "Missing code verifier cookie")
 
 	let accessToken: string
 	let accessTokenExpiresAt: Date
 	let refreshToken: string
 	try {
-		const codeVerifier = generateCodeVerifier()
 		const tokens = await roblox.validateAuthorizationCode(
 			code,
 			codeVerifier

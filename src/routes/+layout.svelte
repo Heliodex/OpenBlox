@@ -11,6 +11,4 @@
 		content="OpenBlox: Learn to build Roblox games, win prizes" />
 </svelte:head>
 
-<main>
-	{@render children()}
-</main>
+{@render children()}

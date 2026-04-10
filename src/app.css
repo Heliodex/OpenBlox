@@ -5,10 +5,8 @@
 	font-weight: 400;
 	font-style: normal;
 	src:
-		url(/BuilderSans-Regular.woff2)
-		format("woff2"),
-		url(/BuilderSans-Regular.woff)
-		format("woff");
+		url(/BuilderSans-Regular.woff2) format("woff2"),
+		url(/BuilderSans-Regular.woff) format("woff");
 	font-display: swap;
 }
 
@@ -17,10 +15,8 @@
 	font-weight: 600;
 	font-style: normal;
 	src:
-		url(/BuilderSans-SemiBold.woff2)
-		format("woff2"),
-		url(/BuilderSans-SemiBold.woff)
-		format("woff");
+		url(/BuilderSans-SemiBold.woff2) format("woff2"),
+		url(/BuilderSans-SemiBold.woff) format("woff");
 	font-display: swap;
 }
 
@@ -29,10 +25,8 @@
 	font-weight: 700;
 	font-style: normal;
 	src:
-		url(/BuilderSans-Bold.woff2)
-		format("woff2"),
-		url(/BuilderSans-Bold.woff)
-		format("woff");
+		url(/BuilderSans-Bold.woff2) format("woff2"),
+		url(/BuilderSans-Bold.woff) format("woff");
 	font-display: swap;
 }
 
@@ -41,10 +35,8 @@
 	font-weight: 400;
 	font-style: normal;
 	src:
-		url(/BuilderMono-Regular.woff2)
-		format("woff2"),
-		url(/BuilderMono-Regular.woff)
-		format("woff");
+		url(/BuilderMono-Regular.woff2) format("woff2"),
+		url(/BuilderMono-Regular.woff) format("woff");
 	font-display: swap;
 }
 
@@ -123,7 +115,7 @@ h4 {
 	@apply font-semibold text-base;
 }
 
-a:not(.btn) {
+a:not(.btn):not(nav a) {
 	@apply text-blue-400 hover:text-blue-300 transition-colors;
 }
 
@@ -291,3 +283,7 @@ details:hover:not([open]) {
 	transform: scaleX(-1);
 }
 /* } */
+
+nav li a {
+	@apply px-4 py-2 hover:bg-neutral-700 transition-colors rounded-lg text-white font-bold;
+}

@@ -1,5 +1,5 @@
 import fs from "node:fs"
-import { error, redirect } from "@sveltejs/kit"
+import { redirect } from "@sveltejs/kit"
 import { type } from "arktype"
 import { form, getRequestEvent } from "$app/server"
 import { authorise } from "$lib/server/auth"

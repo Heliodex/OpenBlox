@@ -32,7 +32,6 @@ export async function GET({ cookies, locals, url }) {
 			code,
 			codeVerifier
 		)
-		console.log("Retrieved tokens:", tokens)
 		accessToken = tokens.accessToken()
 		accessTokenExpiresAt = tokens.accessTokenExpiresAt()
 		refreshToken = tokens.refreshToken()
@@ -44,17 +43,12 @@ export async function GET({ cookies, locals, url }) {
 		error(400, "Invalid code or client credentials")
 	}
 
-	let claims: Claims
-	try {
-		claims = decodeIdToken(accessToken) as Claims
-	} catch {
-		error(400, "Failed to decode ID token")
-	}
-	// if (!claims.sub || !claims.name || !claims.email)
-	// 	error(400, "Invalid ID token claims")
-
 	await db.update(user.id).merge({
-		robloxData: claims,
+		robloxData: {
+			accessToken,
+			accessTokenExpiresAt,
+			refreshToken,
+		},
 	})
 
 	redirect(302, "/home")

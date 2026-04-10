@@ -5,9 +5,9 @@
 	font-weight: 400;
 	font-style: normal;
 	src:
-		url(https://cdn.foundation.roblox.com/current/fonts/builder-sans/BuilderSans-Regular.woff2)
+		url(/BuilderSans-Regular.woff2)
 		format("woff2"),
-		url(https://cdn.foundation.roblox.com/current/fonts/builder-sans/BuilderSans-Regular.woff)
+		url(/BuilderSans-Regular.woff)
 		format("woff");
 	font-display: swap;
 }
@@ -17,9 +17,9 @@
 	font-weight: 600;
 	font-style: normal;
 	src:
-		url(https://cdn.foundation.roblox.com/current/fonts/builder-sans/BuilderSans-SemiBold.woff2)
+		url(/BuilderSans-SemiBold.woff2)
 		format("woff2"),
-		url(https://cdn.foundation.roblox.com/current/fonts/builder-sans/BuilderSans-SemiBold.woff)
+		url(/BuilderSans-SemiBold.woff)
 		format("woff");
 	font-display: swap;
 }
@@ -29,9 +29,9 @@
 	font-weight: 700;
 	font-style: normal;
 	src:
-		url(https://cdn.foundation.roblox.com/current/fonts/builder-sans/BuilderSans-Bold.woff2)
+		url(/BuilderSans-Bold.woff2)
 		format("woff2"),
-		url(https://cdn.foundation.roblox.com/current/fonts/builder-sans/BuilderSans-Bold.woff)
+		url(/BuilderSans-Bold.woff)
 		format("woff");
 	font-display: swap;
 }
@@ -41,9 +41,9 @@
 	font-weight: 400;
 	font-style: normal;
 	src:
-		url(https://cdn.foundation.roblox.com/current/fonts/builder-mono/BuilderMono-Regular.woff2)
+		url(/BuilderMono-Regular.woff2)
 		format("woff2"),
-		url(https://cdn.foundation.roblox.com/current/fonts/builder-mono/BuilderMono-Regular.woff)
+		url(/BuilderMono-Regular.woff)
 		format("woff");
 	font-display: swap;
 }
@@ -52,7 +52,7 @@
 	font-family: "Builder Extended";
 	font-weight: 700;
 	font-style: normal;
-	src: url(https://cdn.foundation.roblox.com/current/fonts/builder-extended/BuilderExtended-Bold.woff2);
+	src: url(/BuilderExtended-Bold.woff2);
 }
 
 * {
@@ -177,11 +177,15 @@ form fieldset {
 
 	/* apply to label next to required inputs */
 	&:has(input[required]) label::after,
-	&:has(select[required]) label::after {
+	&:has(select[required]) label::after,
+	&:has(textarea[required]) label::after {
 		content: "*";
 		@apply text-red-500;
 	}
-	&:not(:has(input[required])):not(:has(select[required])) label::after {
+	&:not(:has(input[required])):not(:has(select[required])):not(
+			:has(textarea[required])
+		)
+		label::after {
 		content: " (optional)";
 		@apply text-sm text-neutral-400;
 	}

@@ -19,7 +19,11 @@ if (!building)
 		process.exit(1)
 	}
 
-export const db = new Surreal()
+export const db = new Surreal({
+	codecOptions: {
+		useNativeDates: true,
+	},
+})
 
 // Retry queries
 const ogq = db.query.bind(db)
@@ -78,10 +82,14 @@ if (!building) {
 }
 
 type RecordIdTypes = {
+	hasSession: string
+	project: string
 	session: string
 	user: string
 }
 
+export const HasSession = new Table("hasSession")
+export const Project = new Table("project")
 export const Session = new Table("session")
 export const User = new Table("user")
 

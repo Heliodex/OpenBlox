@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from "$app/forms"
+	import { logout } from "../api.remote"
 	import { getProjects } from "./data.remote"
 
 	const { data } = $props()
@@ -85,7 +85,7 @@
 		</div>
 	</div>
 
-	<form use:enhance method="post" action="/api?/logout" class="pt-4">
+	<form {...logout} class="pt-4">
 		<button
 			class="btn bg-red-500 hover:bg-red-600 active:bg-red-400 px-3 py-1.5 rounded-lg">
 			<b>Log out</b>

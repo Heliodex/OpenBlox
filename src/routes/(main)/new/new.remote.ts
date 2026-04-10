@@ -1,9 +1,13 @@
-import { error } from "@sveltejs/kit"
+import fs from "node:fs"
+import { error, redirect } from "@sveltejs/kit"
 import { type } from "arktype"
-import { form } from "$app/server"
+import { form, getRequestEvent } from "$app/server"
+import { authorise } from "$lib/server/auth"
+import { db, type RecordId } from "$lib/server/db"
+import createProjectQuery from "./createProject.surql?raw"
 
 const schema = type({
-	"image?": "File",
+	"image?": "Blob | undefined",
 	name: "string",
 	description: "string",
 	"codeUrl?": "string",
@@ -25,6 +29,9 @@ export const newProjectForm = form(
 		declarations,
 		reviewerNotes,
 	}) => {
+		const { locals } = getRequestEvent()
+		const { user } = await authorise(locals)
+
 		console.log(
 			image,
 			name,
@@ -36,6 +43,25 @@ export const newProjectForm = form(
 			reviewerNotes
 		)
 
-		error(500, "Not implemented (yet...)")
+		if (!fs.existsSync("./data/images"))
+			fs.mkdirSync("./data/images", { recursive: true })
+
+		const [, project] = await db.query<RecordId<"project">[]>(
+			createProjectQuery,
+			{
+				user,
+				name,
+				description,
+				codeUrl,
+				robloxUrl,
+				projectType,
+				declarations,
+				reviewerNotes,
+			}
+		)
+
+		console.log("created", project)
+
+		redirect(303, "/home")
 	}
 )

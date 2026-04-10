@@ -3,8 +3,23 @@
 DEFINE NAMESPACE OVERWRITE main;
 DEFINE DATABASE OVERWRITE main STRICT;
 
+DEFINE TABLE OVERWRITE createdProject SCHEMAFULL TYPE RELATION FROM user TO project ENFORCED;
+	DEFINE FIELD OVERWRITE id ON createdProject TYPE string; 
+
 DEFINE TABLE OVERWRITE hasSession SCHEMAFULL TYPE RELATION FROM user TO session ENFORCED;
 	DEFINE FIELD OVERWRITE id ON hasSession TYPE string;
+
+DEFINE TABLE OVERWRITE project SCHEMAFULL TYPE NORMAL;
+	DEFINE FIELD OVERWRITE id ON project TYPE string;
+	DEFINE FIELD OVERWRITE created ON project TYPE datetime DEFAULT ALWAYS time::now();
+	DEFINE FIELD OVERWRITE imageUpdated ON project TYPE option<datetime>;
+	DEFINE FIELD OVERWRITE name ON project TYPE string;
+	DEFINE FIELD OVERWRITE description ON project TYPE string;
+	DEFINE FIELD OVERWRITE codeUrl ON project TYPE option<string>;
+	DEFINE FIELD OVERWRITE robloxUrl ON project TYPE string;
+	DEFINE FIELD OVERWRITE projectType ON project TYPE string;
+	DEFINE FIELD OVERWRITE declarations ON project TYPE option<string>;
+	DEFINE FIELD OVERWRITE reviewerNotes ON project TYPE option<string>;
 
 DEFINE TABLE OVERWRITE session SCHEMAFULL TYPE NORMAL;
 	DEFINE FIELD OVERWRITE id ON session TYPE string;
@@ -13,8 +28,11 @@ DEFINE TABLE OVERWRITE session SCHEMAFULL TYPE NORMAL;
 
 DEFINE TABLE OVERWRITE user SCHEMAFULL TYPE NORMAL;
 	DEFINE FIELD OVERWRITE id ON user TYPE string;
+	DEFINE FIELD OVERWRITE created ON user TYPE datetime DEFAULT ALWAYS time::now();
 	DEFINE FIELD OVERWRITE name ON user TYPE string;
 	DEFINE FIELD OVERWRITE email ON user TYPE string
 		ASSERT string::is_email($value);
-	DEFINE FIELD OVERWRITE robloxData ON user TYPE any;
-DEFINE INDEX IF NOT EXISTS emailI ON user COLUMNS email UNIQUE;
+	DEFINE FIELD OVERWRITE robloxData ON user TYPE option<object>;
+	DEFINE FIELD OVERWRITE robloxData.accessToken ON user TYPE string;
+	DEFINE FIELD OVERWRITE robloxData.accessTokenExpiresAt ON user TYPE datetime;
+	DEFINE FIELD OVERWRITE robloxData.refreshToken ON user TYPE string;

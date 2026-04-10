@@ -32,27 +32,20 @@
 	<h2>Projects</h2>
 
 	<div class="grid gap-4 grid-cols-3 pt-4 pb-8">
-		<div class="bg-neutral-700/50 border border-neutral-500 rounded-lg">
-			<img
-				src="https://placehold.co/300x150"
-				alt="Screenshot"
-				class="rounded-t-lg" />
-			<div class="p-4">
-				<h3 class="text-xl font-bold">Placeholder 1</h3>
-				<p class="text-sm">A cool Roblox game.</p>
-			</div>
-		</div>
-
-		<div class="bg-neutral-700/50 border border-neutral-500 rounded-lg">
-			<img
-				src="https://placehold.co/300x150"
-				alt="Screenshot"
-				class="rounded-t-lg" />
-			<div class="p-4">
-				<h3 class="text-xl font-bold">Placeholder 2</h3>
-				<p class="text-sm">Another cool Roblox game.</p>
-			</div>
-		</div>
+		{#each data.projects as project}
+			<a
+				href="project/{project.id}"
+				class="btn bg-neutral-700/50 hover:bg-neutral-800/50 active:bg-neutral-600/50 border border-neutral-500 rounded-lg">
+				<img
+					src="https://placehold.co/300x150"
+					alt="Screenshot"
+					class="rounded-t-lg" />
+				<div class="p-4">
+					<h3 class="text-xl font-bold">{project.name}</h3>
+					<p class="text-sm">{project.description}</p>
+				</div>
+			</a>
+		{/each}
 
 		<a
 			href="/new"

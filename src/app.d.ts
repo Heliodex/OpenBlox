@@ -6,10 +6,15 @@ import type { RecordId } from "$lib/server/db"
 
 // for information about these interfaces
 declare global {
+	declare type RobloxData = {
+		accessToken: string
+		accessTokenExpiresAt: Date
+		refreshToken: string
+	}
 	declare type User = {
 		id: RecordId<"user">
 		name: string
-		robloxData: object | undefined
+		robloxData: RobloxData | undefined
 	}
 
 	namespace App {

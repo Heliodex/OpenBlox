@@ -17,17 +17,15 @@ export async function GET({ cookies, locals, url }) {
 	const codeVerifier = cookies.get(cookieRobloxVerifier)
 	if (!codeVerifier) error(400, "Missing code verifier cookie")
 
-	let accessToken: string
-	let accessTokenExpiresAt: Date
-	let refreshToken: string
+	const data = {} as RobloxData
 	try {
 		const tokens = await roblox.validateAuthorizationCode(
 			code,
 			codeVerifier
 		)
-		accessToken = tokens.accessToken()
-		accessTokenExpiresAt = tokens.accessTokenExpiresAt()
-		refreshToken = tokens.refreshToken()
+		data.accessToken = tokens.accessToken()
+		data.accessTokenExpiresAt = tokens.accessTokenExpiresAt()
+		data.refreshToken = tokens.refreshToken()
 	} catch (e) {
 		console.error(e)
 		if (e instanceof OAuth2RequestError) error(400, "OAuth2 request failed")
@@ -36,13 +34,7 @@ export async function GET({ cookies, locals, url }) {
 		error(400, "Invalid code or client credentials")
 	}
 
-	await db.update(user.id).merge({
-		robloxData: {
-			accessToken,
-			accessTokenExpiresAt,
-			refreshToken,
-		},
-	})
+	await db.update(user.id).merge({ robloxData: data })
 
 	redirect(302, "/home")
 }

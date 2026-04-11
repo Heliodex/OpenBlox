@@ -2,7 +2,7 @@ LET $project = CREATE ONLY project CONTENT {
 	name: $name,
 	description: $description,
 	codeUrl: $codeUrl,
-	robloxUrl: $robloxUrl,
+	robloxId: $robloxId,
 	projectType: $projectType,
 	declarations: $declarations,
 	reviewerNotes: $reviewerNotes

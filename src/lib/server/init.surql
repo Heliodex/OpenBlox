@@ -16,7 +16,7 @@ DEFINE TABLE OVERWRITE project SCHEMAFULL TYPE NORMAL;
 	DEFINE FIELD OVERWRITE name ON project TYPE string;
 	DEFINE FIELD OVERWRITE description ON project TYPE string;
 	DEFINE FIELD OVERWRITE codeUrl ON project TYPE option<string>;
-	DEFINE FIELD OVERWRITE robloxUrl ON project TYPE string;
+	DEFINE FIELD OVERWRITE robloxId ON project TYPE int;
 	DEFINE FIELD OVERWRITE projectType ON project TYPE string;
 	DEFINE FIELD OVERWRITE declarations ON project TYPE option<string>;
 	DEFINE FIELD OVERWRITE reviewerNotes ON project TYPE option<string>;

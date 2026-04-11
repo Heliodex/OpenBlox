@@ -1,6 +1,7 @@
 import fs from "node:fs"
 import { redirect } from "@sveltejs/kit"
 import { type } from "arktype"
+import sharp from "sharp"
 import { form, getRequestEvent } from "$app/server"
 import { authorise } from "$lib/server/auth"
 import { db, type RecordId } from "$lib/server/db"
@@ -11,7 +12,7 @@ const schema = type({
 	name: "string",
 	description: "string",
 	"codeUrl?": "string",
-	robloxUrl: "string",
+	robloxId: "string.integer.parse",
 	projectType: "string",
 	"declarations?": "string",
 	"reviewerNotes?": "string",
@@ -24,7 +25,7 @@ export const newProjectForm = form(
 		name,
 		description,
 		codeUrl,
-		robloxUrl,
+		robloxId,
 		projectType,
 		declarations,
 		reviewerNotes,
@@ -37,7 +38,7 @@ export const newProjectForm = form(
 			name,
 			description,
 			codeUrl,
-			robloxUrl,
+			robloxId,
 			projectType,
 			declarations,
 			reviewerNotes
@@ -53,7 +54,7 @@ export const newProjectForm = form(
 				name,
 				description,
 				codeUrl,
-				robloxUrl,
+				robloxId,
 				projectType,
 				declarations,
 				reviewerNotes,
@@ -61,6 +62,15 @@ export const newProjectForm = form(
 		)
 
 		console.log("created", project)
+
+		const img = image as Blob | undefined
+		if (!img || img.size <= 0) redirect(303, "/home")
+
+		sharp(await img.arrayBuffer())
+			// size subject to change
+			.resize(1280, 720, { fit: "cover" })
+			.avif({ effort: 9 })
+			.toFile(`./data/images/${project.id}.avif`)
 
 		redirect(303, "/home")
 	}

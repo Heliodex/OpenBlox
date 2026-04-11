@@ -33,13 +33,27 @@
 		</fieldset>
 
 		<fieldset>
-			<label for="robloxUrl">Roblox project URL</label>
+			<label for="robloxId">Roblox project ID</label>
 			<input
-				type="url"
-				name="robloxUrl"
-				id="robloxUrl"
-				placeholder="https://www.roblox.com/..."
+				type="number"
+				name="robloxId"
+				id="robloxId"
+				placeholder="123456789"
 				required />
+			<p class="pt-2 text-neutral-300">
+				This is the number in the middle/at the end of the URL of your
+				Roblox experience or asset.
+			</p>
+			<ul class="text-neutral-300 list-disc list-inside">
+				<li>
+					https://www.roblox.com/games/
+					<span class="text-fuchsia-400">{"{number}"}</span>
+				</li>
+				<li>
+					https://create.roblox.com/store/asset/
+					<span class="text-fuchsia-400">{"{number}"}</span>
+				</li>
+			</ul>
 		</fieldset>
 
 		<fieldset>

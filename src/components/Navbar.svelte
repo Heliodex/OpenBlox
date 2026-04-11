@@ -2,15 +2,17 @@
 </script>
 
 <nav class="h-full border-r border-neutral-500 px-2 py-4">
-	<ul>
+	<ul class="flex flex-col gap-2">
 		<li><a href="/home">Dashboard</a></li>
+		<li><a href="/projects">Projects</a></li>
+		<li><a href="/voting">Voting</a></li>
+		<li><a href="/settings">Settings</a></li>
 	</ul>
 </nav>
 
 <style>
-	ul {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
+	a {
+		display: block;
+		width: 100%;
 	}
 </style>

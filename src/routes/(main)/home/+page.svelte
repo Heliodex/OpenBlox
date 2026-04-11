@@ -64,7 +64,7 @@
 	<div class="grid gap-4 grid-cols-3 pt-4 pb-8">
 		<div class="bg-neutral-700/50 border border-neutral-500 rounded-lg">
 			<img
-				src="https://placehold.co/300x150"
+				src="https://placehold.co/1280x720"
 				alt="Screenshot"
 				class="rounded-t-lg" />
 			<div class="p-4">
@@ -75,7 +75,7 @@
 
 		<div class="bg-neutral-700/50 border border-neutral-500 rounded-lg">
 			<img
-				src="https://placehold.co/300x150"
+				src="https://placehold.co/1280x720"
 				alt="Screenshot"
 				class="rounded-t-lg" />
 			<div class="p-4">

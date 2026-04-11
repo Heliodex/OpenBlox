@@ -39,7 +39,7 @@
 				href="project/{project.id}"
 				class="btn bg-neutral-700/50 hover:bg-neutral-800/50 active:bg-neutral-600/50 border border-neutral-500 rounded-lg">
 				<img
-					src="https://placehold.co/300x150"
+					src="/project/{project.id}/image"
 					alt="{project.name} image"
 					class="rounded-t-lg" />
 				<div class="p-4">

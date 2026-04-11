@@ -8,7 +8,7 @@
 	<h1 class="text-2xl pb-4">Project &ndash; {project.name}</h1>
 
 	<img
-		src="https://placehold.co/300x150"
+		src="/project/{project.id}/image"
 		alt="{project.name} image"
 		class="w-full rounded-2xl aspect-video object-cover" />
 

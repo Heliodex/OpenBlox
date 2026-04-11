@@ -1,15 +1,8 @@
 import { error, redirect } from "@sveltejs/kit"
-import {
-	ArcticFetchError,
-	decodeIdToken,
-	generateCodeVerifier,
-	OAuth2RequestError,
-} from "arctic"
+import { ArcticFetchError, OAuth2RequestError } from "arctic"
 import { authorise, cookieRoblox, cookieRobloxVerifier } from "$lib/server/auth"
 import { db } from "$lib/server/db"
 import { roblox } from "$lib/server/oauth"
-
-type Claims = object
 
 export async function GET({ cookies, locals, url }) {
 	const { user } = await authorise(locals)

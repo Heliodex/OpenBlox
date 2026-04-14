@@ -14,7 +14,7 @@ const schema = type({
 	"codeUrl?": "string",
 	robloxId: "string.integer.parse",
 	projectType: "string",
-	"declarations?": "string",
+	"declarations?": "string[]",
 	"reviewerNotes?": "string",
 })
 
@@ -66,7 +66,7 @@ export const newProjectForm = form(
 		const img = image as Blob | undefined
 		if (!img || img.size <= 0) redirect(303, "/home")
 
-		sharp(await img.arrayBuffer())
+		await sharp(await img.arrayBuffer())
 			// size subject to change
 			.resize(1280, 720, { fit: "cover" })
 			.avif({ effort: 9 })

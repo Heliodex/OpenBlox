@@ -2,7 +2,7 @@ import { error } from "@sveltejs/kit"
 import { getRequestEvent, query } from "$app/server"
 import { authorise } from "$lib/server/auth"
 import { db, Record } from "$lib/server/db"
-import type { Universe } from "$lib/server/roblox"
+import { refreshToken, type Universe } from "$lib/server/roblox"
 import projectQuery from "./project.surql?raw"
 
 type Project = {
@@ -31,6 +31,9 @@ export const getData = query(async () => {
 	if (!project) error(404, "Project not found")
 
 	if (!user.robloxData) return { project }
+
+	const data = user.robloxData
+	if (data) await refreshToken(data, user)
 
 	const res = await f(
 		`https://apis.roblox.com/cloud/v2/universes/${project.robloxId}`,
